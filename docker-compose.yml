@@ -2,25 +2,8 @@ version: '3.4'
 
 services:
   sulu:
-    image: sulu-cms
-    container_name: sulu
+    image: cse301-sulu-docker
+    container_name: cse301-sulu-docker
     build: .
-    depends_on: 
-      - database
     ports:
-      - 3000:80
-  database:
-    image: mysql:5.7
-    ports:
-        - 3306:3306
-    command: --init-file /data/application/init.sql
-    volumes:
-        - ./init.sql:/data/application/init.sql
-    environment:
-        MYSQL_ROOT_USER: tucoi
-        MYSQL_ROOT_PASSWORD: root
-        MYSQL_DATABASE: sulu
-        MYSQL_USER: tucoi
-        MYSQL_PASSWORD: root
-    restart: always
-    
+      - 80:80
