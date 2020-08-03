@@ -1,0 +1,1 @@
+docker exec cse301-sulu-docker app/console sulu:build dev -n

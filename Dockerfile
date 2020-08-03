@@ -12,7 +12,3 @@ RUN cp app/Resources/pages/default.xml.dist app/Resources/pages/default.xml  && 
     cp app/Resources/pages/overview.xml.dist app/Resources/pages/overview.xml && \
     cp app/Resources/snippets/default.xml.dist app/Resources/snippets/default.xml
 RUN rm -rf app/cache/* && rm -rf app/logs/*
-
-
-WORKDIR /var/www/sulu-standard
-CMD ["/bin/bash", "-c","app/console sulu:build dev --no-interaction"]
