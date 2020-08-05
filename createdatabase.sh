@@ -1,1 +1,1 @@
-docker exec cse301-sulu-docker app/console sulu:build dev -n
+docker exec cse301-sulu-docker bash -c 'su - www-data -c "sulu-standard/app/console sulu:build dev --no-interaction"'
