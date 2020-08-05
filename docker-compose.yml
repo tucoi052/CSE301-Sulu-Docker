@@ -4,6 +4,14 @@ services:
   sulu:
     image: cse301-sulu-docker
     container_name: cse301-sulu-docker
+    depends_on: 
+      - database
     build: .
     ports:
       - 80:80
+      
+  database:
+    image: mysql:5.5
+    container_name: cse301-sulu-docker-database
+    environment: 
+      - MYSQL_ROOT_PASSWORD=root
