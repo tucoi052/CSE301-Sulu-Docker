@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        {% block meta %} {% endblock %}
+
+        {% stylesheets
+            '@ClientWebsiteBundle/Resources/public/default/css/bootstrap.min.css'
+            '@ClientWebsiteBundle/Resources/public/default/css/justified-nav.css'
+        %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+    </head>
+    <body>
+        <div class="container">
+
+            <!-- header -->
+            <div class="masthead">
+                <div class="row">
+                    <div class="col-lg-9">
+                        <h3 class="text-muted">
+                            <img height="20" src="{{ asset('bundles/clientwebsite/default/images/sulu.png') }}" />
+                            <a href="{{ sulu_content_root_path() }}">SULU CMF</a>
+                        </h3>
+                        <div>
+                            {% for locale, url in urls %}
+                                <a href="{{ sulu_content_path((url?:'/'),request.webspaceKey,locale) }}">{{ locale }}</a>
+                                {% if not loop.last %}&nbsp;|&nbsp;{% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <form action="{{ path('sulu_search.website_search') }}" method="GET">
+                            <input name="q" type="text" placeholder="Search" />
+                            <input type="submit" value="Go" />
+                        </form>
+                    </div>
+                </div>
+                <br/>
+                {% include 'ClientWebsiteBundle:views:navigation.html.twig' %}
+            </div>
+            <!-- /header -->
+
+            <!-- content -->
+            {% block content %}{% endblock %}
+            <!-- /content -->
+
+            <!-- footer -->
+            <div class="footer">
+                <div class="row">
+                    <div class="col-lg-4">&copy; SULU CMF 2014</div>
+                    <div class="col-lg-4">Access to the demo <a href="/admin" target="_blank">admin</a></div>
+                    <div class="col-lg-4">Credentials: demo / demo</div>
+                </div>
+                <div style="overflow-y: auto; height:200px;"></div>
+                <div class="row">
+                    <div class="col-lg-10"></div>
+                    <div class="col-lg-2">
+                    <div>Contact me <a href="https://fb.com/tucoi052"  target="_blank">Facebook</a></div>
+                    <div>Access to my <a href="https://github.com/tucoi052"  target="_blank">Github</a></div>
+                    <div>Access to my <a href="https://gitlab.com/tucoi052"  target="_blank">Gitlab</a></div>
+                </div>
+                </div>
+            </div>
+            <!-- /footer -->
+
+        </div><!-- /container -->
+
+        {% javascripts
+            'http://code.jquery.com/jquery-1.11.0.min.js'
+            '@ClientWebsiteBundle/Resources/public/default/js/bootstrap.js'
+        %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+    </body>
+</html>

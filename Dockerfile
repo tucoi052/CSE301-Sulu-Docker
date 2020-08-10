@@ -11,6 +11,9 @@ WORKDIR /var/www/sulu-standard
 RUN composer install --prefer-source
 
 COPY webspaces/sulu.io.xml app/Resources/webspaces/sulu.io.xml
+COPY config/master.html.twig src/Client/Bundle/WebsiteBundle/Resources/themes/default/views/master.html.twig
+COPY config/parameters.yml app/config/parameters.yml
+
 RUN cp app/Resources/pages/default.xml.dist app/Resources/pages/default.xml  && \
     cp app/Resources/pages/overview.xml.dist app/Resources/pages/overview.xml && \
     cp app/Resources/snippets/default.xml.dist app/Resources/snippets/default.xml
