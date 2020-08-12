@@ -1,0 +1,29 @@
+kind: pipeline
+type: docker
+name: default
+
+steps:
+  - name: publish
+    image: appleboy/drone-ssh
+    settings:
+      host: 150.95.109.21
+      port: 22
+      username: root
+      password:
+        from_secret: password
+      command_timeout: 6m
+      script:
+        - cd tucoi/CSE301-Sulu-Docker
+        - git reset HEAD --hard
+        - git pull
+        - docker-compose up --build -d
+    when:
+      branch:
+        - master
+      event:
+        - push
+      status:
+        - success
+
+image_pull_secrets:
+  - dockerconfigjson
